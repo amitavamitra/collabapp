@@ -8,6 +8,7 @@ const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
+
 const socket = io();
 var keyCode = "";
 // Join chatroom
@@ -28,10 +29,12 @@ socket.on('message', (message) => {
 
 //  KeyDown Event start
 
+
+
 chatForm.addEventListener('keydown', (e) => {
   if (e.isComposing) {
   typing=true
-  socket.emit('typing', {user:username, typing:true , keypressed:e.keyCode })
+  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , documentelement:document.activeElement.name})
   clearTimeout(timeout)
   timeout=setTimeout(typingTimeout, 1500)
 }
@@ -43,7 +46,7 @@ else{
 
 function typingTimeout(){
   typing=false
-  socket.emit('typing', {user:username, typing:false ,keypressed:String.fromCharCode(e.keyCode)})
+  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , documentelement:document.activeElement.name})
   console.log(String.fromCharCode(keyCode))
 }
 

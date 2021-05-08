@@ -1,4 +1,4 @@
-// Push for Heroku
+// Push for Heroku and CF in BTP
 const path = require('path');
 const http = require('http');
 const express = require('express');
@@ -26,6 +26,16 @@ io.on('connection', socket => {
     const user = userJoin(socket.id, username, room);
 
     socket.join(user.room);
+//  user typing /?
+
+socket.on('typing', (data)=>{
+  console.log(data)
+  if(data.typing==true)
+     io.emit('display', data)
+     
+  else
+     io.emit('display', data)
+})
 
     // Welcome current user
     socket.emit('message', formatMessage(botName, ''));

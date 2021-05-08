@@ -2,7 +2,7 @@ const chatForm = document.getElementById('mat-form');
 const chatMessages = document.querySelector('.form-control');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
-
+var timeout=undefined;
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
@@ -27,6 +27,42 @@ socket.on('message', (message) => {
 //   // Scroll down - Since its a field there is no need for scroll.
 //   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
+
+//  KeyDown Event start
+
+chatForm.addEventListener('keydown', (e) => {
+  if (e.isComposing) {
+  typing=true
+  socket.emit('typing', {user:username, typing:true})
+  clearTimeout(timeout)
+  timeout=setTimeout(typingTimeout, 1500)
+}
+else{
+  clearTimeout(timeout)
+  typingTimeout()
+  // sendMessage()
+}
+
+function typingTimeout(){
+  typing=false
+  socket.emit('typing', {user:username, typing:false})
+}
+
+    // function sendMessage(){
+    //   // var userName = user 
+    //   var message = $('#unit').val()
+    //   var unit = `{"${username}" : "${message}"}`
+    //   $.post('/send_message', JSON.parse(unit), ()=>{
+    //   console.log('unit posted succesfully')
+    //   })
+    //   $('#unit').val("")
+ 
+    // }
+  });
+//  KeyDown Event End
+
+
+
 
 // Message submit
 chatForm.addEventListener('submit', (e) => {
@@ -53,34 +89,17 @@ chatForm.addEventListener('submit', (e) => {
 
   // Emit message to server
   socket.emit('chatMessage', msg);
-
-//   // Clear input - Not valid as we update the very id.
-//   e.target.elements.matkx.value = '';
-//   e.target.elements.msg.focus();
 });
 
 // Output message to DOM
 function outputMessage(message) {
-//   const div = document.createElement('div');
-//   div.classList.add('message');
-//   const p = document.createElement('p');
-//   p.classList.add('meta');
-//   p.innerText = message.username;
-//   p.innerHTML += `<span>${message.time}</span>`;
-//   div.appendChild(p);
-//   const para = document.createElement('p');
-//   para.classList.add('text');
-//   para.innerText = message.text;
-//   div.appendChild(para);
-//   document.querySelector('.form-control').appendChild(div);
-if (message.length !=0) {
-document.getElementById('matkx').value = message.text[0];
-document.getElementById('mbrsh').value = message.text[1];
-document.getElementById('matkl').value = message.text[2];
-document.getElementById('matyp').value = message.text[3];
-document.getElementById('meins').value = message.text[4];
-} 
-
+        if (message.length !=0) {
+        document.getElementById('matkx').value = message.text[0];
+        document.getElementById('mbrsh').value = message.text[1];
+        document.getElementById('matkl').value = message.text[2];
+        document.getElementById('matyp').value = message.text[3];
+        document.getElementById('meins').value = message.text[4];
+        } 
 }
 // Add room name to DOM
 function outputRoomName(room) {
@@ -89,19 +108,18 @@ function outputRoomName(room) {
 
 // Add users to DOM
 function outputUsers(users) {
-  userList.innerHTML = '';
-  users.forEach((user) => {
-    const li = document.createElement('li');
-    li.innerText = user.username;
-    userList.appendChild(li);
-  });
+      userList.innerHTML = '';
+      users.forEach((user) => {
+        const li = document.createElement('li');
+        li.innerText = user.username;
+        userList.appendChild(li);
+      });
 }
 
 //Prompt the user before leave chat room
 document.getElementById('leave-btn').addEventListener('click', () => {
   const leaveRoom = confirm('Are you sure you want to leave the chatroom?');
-  if (leaveRoom) {
-    window.location = '../index.html';
-  } else {
-  }
+      if (leaveRoom) {
+        window.location = '../index.html';
+      } 
 });

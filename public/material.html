@@ -52,7 +52,13 @@
               <label for="mbrsh">Industry</label>
             </div>
             <div class="form-group col-md-6">
-              <input type="text"  name="mbrsh"  class="form-control" id="mbrsh"  placeholder="Industry">
+              <select     name="mbrsh" id="mbrsh">
+                <option value="M">Mechanical</option>
+                <option value="R">Retail</option>
+                <option value="P">Pharma</option>
+                
+              </select>
+              <!-- <input type="text"  name="mbrsh"  class="form-control" id="mbrsh"  placeholder="Industry"> -->
             </div>
             <div class="form-group col-md-4">
               <input name="mbrsh_user"  type="text" class="form-control" disabled="true" placeholder="user:">
@@ -64,7 +70,12 @@
               <label for="matkl">Material Group</label>
             </div>
             <div class="form-group col-md-6">
-              <input type="text" name="matkl" class="form-control" id="matkl"  placeholder="Material Group">
+              <select     name="matkl" id="matkl">
+                <option value="0010">0010-Disk Memory</option>
+                <option value="0020">0020-Motherboard</option>
+                <option value="0030">0030-Processor</option>
+                <option value="0040">0040-Laptop-Notebook</option>
+              </select>
             </div>
             <div class="form-group col-md-4">
               <input name="matkl_user"  type="text" class="form-control" disabled="true" placeholder="user:">
@@ -76,7 +87,11 @@
           <label for="matyp">Material Type</label>
         </div>
         <div class="form-group col-md-6">
-          <input type="text"  name="matyp"  class="form-control" id="matyp"  placeholder="Material Type">
+          <select     name="matyp" id="matyp">
+            <option value="FERT">FERT-Finished Goods</option>
+            <option value="HALB">HALB-Semi Finished Goods</option>
+            <option value="ROH">ROH-Raw Materials</option>
+          </select>
         </div>
         <div class="form-group col-md-4">
           <input name="matyp_user"  type="text" class="form-control" disabled="true" placeholder="user:">
@@ -88,7 +103,11 @@
           <label for="meins">Base Unit of Measure</label>
         </div>
         <div class="form-group col-md-6">
-          <input type="text" name="meins" class="form-control" id="meins"  placeholder="Base Unit of Measure">
+          <select     name="meins" id="meins">
+            <option value="EA">EA- Each</option>
+            <option value="CS">CS-Case</option>
+            <option value="KG">KG-KiloGram</option>
+          </select>
         </div>
         <div class="form-group col-md-4">
           <input name="meins_user"  type="text" class="form-control" disabled="true" placeholder="user:">

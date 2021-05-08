@@ -74,6 +74,7 @@ app.post('/login' , function(req,res){
                    alive = 'You are in'
                   console.log(alive)
                 }
+                
               });
                 res.redirect('/');
                 // Create headers  with AI Resource Group and Bearer token

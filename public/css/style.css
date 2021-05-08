@@ -186,9 +186,3 @@ a {
 		display: none;
 	}
 }
-
-
-table, th, td {
-	border: 1px solid black;
-	max-width: 992px;
-  }

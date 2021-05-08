@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+      integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
+      crossorigin="anonymous"
+    />
+    <!-- -- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css" />
+
+    <title>Process Collaboration App</title>
+
+
+    <title>Document</title>
+</head>
+<body>
+
+ <header class="chat-header">
+        <h1><i class="fas fa-compress-arrows-alt"></i> ProcessCollab</h1>
+        <a id="leave-btn" class="btn">Leave Room</a>
+      </header>
+      <main class="chat-main">
+        <div class="chat-sidebar">
+          <h3><i class="fas fa-comments"></i> Room Name:</h3>
+          <h2 id="room-name"></h2>
+          <h3><i class="fas fa-users"></i> Users</h3>
+          <ul id="users"></ul>
+        </div>
+
+    <form   id="mat-form" >
+      
+        <div class="col-md-4 mb-3">
+          <div class="form-row">
+          <label for="matkx">Description</label>
+          <input type="text" name="matkx" class="form-control" id="matkx"  placeholder="Product Description">
+        </div>
+        <div class="form-row">
+          <label for="mbrsh">Industry</label>
+          <input type="text"  name="mbrsh"  class="form-control" id="mbrsh"  placeholder="Industry">
+        </div>
+        <div class="form-row">
+          <label for="matkl">Material Group</label>
+          <input type="text" name="matkl" class="form-control" id="matkl"  placeholder="Material Group">
+        </div>
+        <div class="form-row">
+          <label for="matyp">Material Type</label>
+          <input type="text"  name="matyp"  class="form-control" id="matyp"  placeholder="Material Type">
+        </div>
+        <div class="form-row">
+          <label for="meins">Base Unit of Measure</label>
+          <input type="text" name="meins" class="form-control" id="meins"  placeholder="Base Unit of Measure">
+        </div>
+       
+       
+          <button type="submit" <i class="fas fa-paper-plane btn btn-primary"></i>Emit</button>
+
+        
+
+      </form>
+      <script
+    
+      src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"
+      integrity="sha256-TDxXjkAUay70ae/QJBEpGKkpVslXaHHayklIVglFRT4="
+      crossorigin="anonymous"
+    ></script>
+    <!-- access to the front end library of socket so that from main.js we can access it  -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/mat.js"></script>
+
+</body>
+</html>

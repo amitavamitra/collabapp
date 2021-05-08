@@ -34,7 +34,7 @@ socket.on('message', (message) => {
 chatForm.addEventListener('keydown', (e) => {
   if (e.isComposing) {
   typing=true
-  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , documentelement:document.activeElement.name})
+  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , docElement:document.activeElement.name})
   clearTimeout(timeout)
   timeout=setTimeout(typingTimeout, 1500)
 }
@@ -46,7 +46,7 @@ else{
 
 function typingTimeout(){
   typing=false
-  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , documentelement:document.activeElement.name})
+  socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , docElement:document.activeElement.name})
   console.log(String.fromCharCode(keyCode))
 }
 

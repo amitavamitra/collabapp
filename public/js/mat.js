@@ -24,8 +24,6 @@ socket.on('message', (message) => {
   console.log(message);
   outputMessage(message);
 
-//   // Scroll down - Since its a field there is no need for scroll.
-//   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 //  KeyDown Event start
@@ -45,8 +43,8 @@ else{
 
 function typingTimeout(){
   typing=false
-  socket.emit('typing', {user:username, typing:false ,keypressed:e.keyCode})
-  console.log(keyCode)
+  socket.emit('typing', {user:username, typing:false ,keypressed:String.fromCharCode(e.keyCode)})
+  console.log(String.fromCharCode(keyCode))
 }
 
     // function sendMessage(){

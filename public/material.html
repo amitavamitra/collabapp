@@ -22,7 +22,7 @@
 <body>
 
  <header class="chat-header">
-        <h1><i class="fas fa-compress-arrows-alt"></i> ProcessCollab</h1>
+        <h1><i class="fas fa-compress-arrows-alt"></i> ProcessCollab & `${username}'</h1>
         <a id="leave-btn" class="btn">Leave Room</a>
       </header>
       <main class="chat-main">
@@ -31,6 +31,8 @@
           <h2 id="room-name"></h2>
           <h3><i class="fas fa-users"></i> Users</h3>
           <ul id="users"></ul>
+          <h4><i class="fas fa-user"></i> This user</h4>
+          <p id="username"><p>
         </div>
 
     <form   id="mat-form" >
@@ -103,7 +105,7 @@
           <label for="meins">Base Unit of Measure</label>
         </div>
         <div class="form-group col-md-6">
-          <select     name="meins" id="meins">
+          <select   name="meins" id="meins">
             <option value="EA">EA- Each</option>
             <option value="CS">CS-Case</option>
             <option value="KG">KG-KiloGram</option>
@@ -115,6 +117,9 @@
       </div>
 
       <button type="submit" <i class="fas fa-paper-plane btn btn-primary"></i>Emit</button>
+        </form>
+        <form action="/" method="post">
+          <button type="submit" <i class="fas fa-paper-plane btn btn-primary"></i>Freze</button>
         </form>
       <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"

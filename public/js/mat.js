@@ -14,7 +14,7 @@ const socket = io();
 var keyCode = "";
 // Join chatroom
 socket.emit('joinRoom', { username, room });
-
+document.getElementById('username').value = username;
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(room);
@@ -117,6 +117,7 @@ function outputMessage(message) {
         document.getElementById('matkl').value = message.text[2];
         document.getElementById('matyp').value = message.text[3];
         document.getElementById('meins').value = message.text[4];
+        
         } 
 
       

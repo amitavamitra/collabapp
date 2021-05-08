@@ -4,6 +4,7 @@ const http = require('http');
 const express = require('express');
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
+const messageTyping = require('./utils/usertyping');
 const {
   userJoin,
   getCurrentUser,
@@ -19,6 +20,7 @@ const io = socketio(server);
 app.use(express.static(path.join(__dirname, 'public')));
 
 const botName = 'ChatCord Bot';
+const docElement = "";
 
 // Run when client connects
 io.on('connection', socket => {
@@ -39,6 +41,8 @@ socket.on('typing', (data)=>{
 
     // Welcome current user
     socket.emit('message', formatMessage(botName, ''));
+
+// Who is typing ?
 
     // Broadcast when a user connects
     socket.broadcast

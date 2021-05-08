@@ -1,13 +1,14 @@
 const chatForm = document.getElementById('mat-form');
 const chatMessages = document.querySelector('.form-control');
 const roomName = document.getElementById('room-name');
+var  docActiveElement = document.activeElement.name;
 const userList = document.getElementById('users');
+
 var timeout=undefined;
 // Get username and room from URL
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
-
 
 const socket = io();
 var keyCode = "";
@@ -22,21 +23,35 @@ socket.on('roomUsers', ({ room, users }) => {
 
 // Message from server
 socket.on('message', (message) => {
-  console.log(message);
+  // console.log(message);
   outputMessage(message);
-
 });
 
+if ( docActiveElement == 'matkx') {
+  document.getElementById('matkx_user').style.backgroundColor = 'red';
+  }
+
+
+
+// Message from server
+socket.on('typing', (data) => {
+  // console.log(data);
+  userTyping(data);
+});
+
+// Output message to DOM
+function userTyping(data) {
+  console.log(data)
+}
+
 //  KeyDown Event start
-
-
-
 chatForm.addEventListener('keydown', (e) => {
   if (e.isComposing) {
   typing=true
   socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , docElement:document.activeElement.name})
   clearTimeout(timeout)
   timeout=setTimeout(typingTimeout, 1500)
+ 
 }
 else{
   clearTimeout(timeout)
@@ -45,9 +60,11 @@ else{
 }
 
 function typingTimeout(){
+  var user = "";
   typing=false
   socket.emit('typing', {user:username,typing:true ,keypressed:e.keyCode , docElement:document.activeElement.name})
   console.log(String.fromCharCode(keyCode))
+ 
 }
 
     // function sendMessage(){
@@ -88,6 +105,8 @@ chatForm.addEventListener('submit', (e) => {
 
   // Emit message to server
   socket.emit('chatMessage', msg);
+  console.log(msg);
+
 });
 
 // Output message to DOM
@@ -99,6 +118,10 @@ function outputMessage(message) {
         document.getElementById('matyp').value = message.text[3];
         document.getElementById('meins').value = message.text[4];
         } 
+
+      
+
+
 }
 // Add room name to DOM
 function outputRoomName(room) {

@@ -13,6 +13,8 @@ var matyp =  document.getElementById('matyp');
 var matyp_user =  document.getElementById('matyp_user');
 var meins =  document.getElementById('meins');
 var meins_user =  document.getElementById('meins_user');
+var freeze = document.getElementById('freeze');
+var freeze_user = document.getElementById('freeze_user');
 var utyping = document.getElementById('username');
 
 var timeout=undefined;
@@ -122,6 +124,20 @@ socket.on('meins',function(data){
 meins_user.innerHTML = data.value + ' is typing';
 meins_user.style.backgroundColor = 'lightblue';
 
+})
+
+//  When user is working on  freeze
+freeze.addEventListener('mousedown',function(){
+  socket.emit('freeze',{utyping: utyping,freeze:freeze.value})
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
+socket.on('freeze',function(data){
+  // console.log(data.freeze)
+  if (data.freeze == 'on') {
+    freeze_user.innerHTML = data.utyping.value + ' has agreed';
+    freeze_user.style.backgroundColor = 'lightblue';
+  } 
 })
 
 

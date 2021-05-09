@@ -63,10 +63,16 @@ io.on('connection', socket => {
         socket.broadcast.emit('matyp',data);
       })
 
-           // When typing on meins
+      // When typing on meins
 
        socket.on('meins',function(data){
         socket.broadcast.emit('meins',data);
+      })
+
+      // When typing on freeze
+
+      socket.on('freeze',function(data){
+        socket.broadcast.emit('freeze',data);
       })
 
 

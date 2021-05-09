@@ -3,6 +3,9 @@ const chatMessages = document.querySelector('.form-control');
 const roomName = document.getElementById('room-name');
 var  docActiveElement = document.activeElement.name;
 const userList = document.getElementById('users');
+var matkxr =  document.getElementById('matkx');
+var matkx_user =  document.getElementById('matkx_user');
+var utyping = document.getElementById('username');
 
 var timeout=undefined;
 // Get username and room from URL
@@ -44,7 +47,28 @@ function userTyping(data) {
   console.log(data)
 }
 
+// Listen for events
+
+//  1.When user is typing
+
+//  2. When emit button is pressed 
+
 //  KeyDown Event start
+
+//  When user is working on  Matkx
+matkx.addEventListener('keypress',function(){
+    socket.emit('matkx',utyping)
+    clearTimeout(timeout)
+    timeout=setTimeout(1500)
+  })
+socket.on('matkx',function(data){
+matkx_user.innerHTML = data.value + ' is typing';
+matkx_user.style.backgroundColor = 'lightblue';
+
+})
+
+
+
 chatForm.addEventListener('keydown', (e) => {
   if (e.isComposing) {
   typing=true
@@ -67,16 +91,7 @@ function typingTimeout(){
  
 }
 
-    // function sendMessage(){
-    //   // var userName = user 
-    //   var message = $('#unit').val()
-    //   var unit = `{"${username}" : "${message}"}`
-    //   $.post('/send_message', JSON.parse(unit), ()=>{
-    //   console.log('unit posted succesfully')
-    //   })
-    //   $('#unit').val("")
- 
-    // }
+  
   });
 //  KeyDown Event End
 
@@ -146,3 +161,4 @@ document.getElementById('leave-btn').addEventListener('click', () => {
         window.location = '../index.html';
       } 
 });
+

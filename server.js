@@ -1,6 +1,7 @@
 // Push for Heroku and CF in BTP
 const path = require('path');
 const http = require('http');
+const ejs =  require('ejs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -22,8 +23,11 @@ const server = http.createServer(app);
 const io = socketio(server);
 
 // Set static folder
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(express.static('public'));
+
+app.set('view engine' , 'ejs');
 const botName = 'ChatCord Bot';
 const docElement = "";
 
@@ -34,6 +38,12 @@ io.on('connection', socket => {
 
     socket.join(user.room);
 //  user typing /?
+
+  // When typing on matkx
+
+  socket.on('matkx',function(data){
+    socket.broadcast.emit('matkx',data);
+  })
 
 socket.on('typing', (data)=>{
   console.log(data)
@@ -71,6 +81,9 @@ socket.on('typing', (data)=>{
     // console.log(matkx)
   });
 
+
+
+
   // Runs when client disconnects
   socket.on('disconnect', () => {
     const user = userLeave(socket.id);
@@ -91,9 +104,10 @@ socket.on('typing', (data)=>{
 });
 
 
+
 app.post('/s4',function(req,res){
 // On user approval - call S/4 via node-rfc
-
+console.log('post method called')
   const abapConnection = {
     dest:'QJ9',
     user:process.env.UQJ9,

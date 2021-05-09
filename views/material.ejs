@@ -45,7 +45,7 @@
               <input type="text" name="matkx" class="form-control" id="matkx"  placeholder="Product Description"> 
             </div>
             <div class="form-group col-md-4">
-                <label class="form-control" id="matkx_user" ></label>
+              <input name="matkx_user"  type="text" class="form-control"  placeholder="user:">
             </div>    
       </div>
 
@@ -63,7 +63,7 @@
               <!-- <input type="text"  name="mbrsh"  class="form-control" id="mbrsh"  placeholder="Industry"> -->
             </div>
             <div class="form-group col-md-4">
-               <label class="form-control"  id="mbrsh_user" ></label>
+              <input name="mbrsh_user"  type="text" class="form-control" disabled="true" placeholder="user:">
             </div>
       </div>
 
@@ -80,7 +80,7 @@
               </select>
             </div>
             <div class="form-group col-md-4">
-                <label class="form-control"  id="matkl_user" ></label>
+              <input name="matkl_user"  type="text" class="form-control" disabled="true" placeholder="user:">
             </div>
       </div>
 
@@ -96,8 +96,7 @@
           </select>
         </div>
         <div class="form-group col-md-4">
-       
-          <label class="form-control"  id="matyp_user" ></label>
+          <input name="matyp_user"  type="text" class="form-control" disabled="true" placeholder="user:">
         </div>
       </div>
 
@@ -113,7 +112,7 @@
           </select>
         </div>
         <div class="form-group col-md-4">
-           <label class="form-control"  id="meins_user" ></label>
+          <input name="meins_user"  type="text" class="form-control" disabled="true" placeholder="user:">
         </div>
       </div>
       <div class="form-group col-md-12">
@@ -133,8 +132,11 @@
       
 
         </form>
+         
+        <form action="/s4" method="post">
           <button type="submit">Send2S4</button>
-        <form action="/s4" method="post"></form>
+          
+        </form>
 
       <script
       src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.9.2/qs.min.js"

@@ -45,6 +45,12 @@ io.on('connection', socket => {
     socket.broadcast.emit('matkx',data);
   })
 
+   // When typing on mbrsh
+
+   socket.on('mbrsh',function(data){
+    socket.broadcast.emit('mbrsh',data);
+  })
+
 socket.on('typing', (data)=>{
   console.log(data)
   if(data.typing==true)

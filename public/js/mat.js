@@ -3,8 +3,10 @@ const chatMessages = document.querySelector('.form-control');
 const roomName = document.getElementById('room-name');
 var  docActiveElement = document.activeElement.name;
 const userList = document.getElementById('users');
-var matkxr =  document.getElementById('matkx');
+var matkx =  document.getElementById('matkx');
 var matkx_user =  document.getElementById('matkx_user');
+var mbrsh =  document.getElementById('mbrsh');
+var mbrsh_user =  document.getElementById('mbrsh_user');
 var utyping = document.getElementById('username');
 
 var timeout=undefined;
@@ -64,6 +66,18 @@ matkx.addEventListener('keypress',function(){
 socket.on('matkx',function(data){
 matkx_user.innerHTML = data.value + ' is typing';
 matkx_user.style.backgroundColor = 'lightblue';
+
+})
+
+//  When user is working on  mbrsh
+mbrsh.addEventListener('mousedown',function(){
+  socket.emit('mbrsh',utyping)
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
+socket.on('mbrsh',function(data){
+mbrsh_user.innerHTML = data.value + ' is typing';
+mbrsh_user.style.backgroundColor = 'lightblue';
 
 })
 

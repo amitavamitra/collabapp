@@ -4,16 +4,15 @@
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "moment": "^2.29.1",
-    "node-rfc": "^2.4.2",
     "request": "^2.88.2",
     "socket.io": "^4.0.1"
   },
   "scripts": {
     "start": "node server.js"
   },
-  "name": "realtimechat",
+  "name": "collabapp",
   "version": "1.0.0",
-  "description": "RealTime Chat Application",
+  "description": "Process collaboration for Material",
   "main": "server.js",
   "author": "Amitava Mitra",
   "license": "MIT",

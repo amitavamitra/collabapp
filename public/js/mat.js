@@ -7,6 +7,12 @@ var matkx =  document.getElementById('matkx');
 var matkx_user =  document.getElementById('matkx_user');
 var mbrsh =  document.getElementById('mbrsh');
 var mbrsh_user =  document.getElementById('mbrsh_user');
+var matkl =  document.getElementById('matkl');
+var matkl_user =  document.getElementById('matkl_user');
+var matyp =  document.getElementById('matyp');
+var matyp_user =  document.getElementById('matyp_user');
+var meins =  document.getElementById('meins');
+var meins_user =  document.getElementById('meins_user');
 var utyping = document.getElementById('username');
 
 var timeout=undefined;
@@ -78,6 +84,43 @@ mbrsh.addEventListener('mousedown',function(){
 socket.on('mbrsh',function(data){
 mbrsh_user.innerHTML = data.value + ' is typing';
 mbrsh_user.style.backgroundColor = 'lightblue';
+
+})
+
+//  When user is working on  matkl
+matkl.addEventListener('mousedown',function(){
+  socket.emit('matkl',utyping)
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
+socket.on('matkl',function(data){
+matkl_user.innerHTML = data.value + ' is typing';
+matkl_user.style.backgroundColor = 'lightblue';
+
+})
+
+//  When user is working on  matyp
+matyp.addEventListener('mousedown',function(){
+  socket.emit('matyp',utyping)
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
+socket.on('matyp',function(data){
+matyp_user.innerHTML = data.value + ' is typing';
+matyp_user.style.backgroundColor = 'lightblue';
+
+})
+
+
+//  When user is working on  meins
+meins.addEventListener('mousedown',function(){
+  socket.emit('meins',utyping)
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
+socket.on('meins',function(data){
+meins_user.innerHTML = data.value + ' is typing';
+meins_user.style.backgroundColor = 'lightblue';
 
 })
 

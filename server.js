@@ -51,6 +51,25 @@ io.on('connection', socket => {
     socket.broadcast.emit('mbrsh',data);
   })
 
+     // When typing on matkl
+
+     socket.on('matkl',function(data){
+      socket.broadcast.emit('matkl',data);
+    })
+
+      // When typing on matyp
+
+      socket.on('matyp',function(data){
+        socket.broadcast.emit('matyp',data);
+      })
+
+           // When typing on meins
+
+       socket.on('meins',function(data){
+        socket.broadcast.emit('meins',data);
+      })
+
+
 socket.on('typing', (data)=>{
   console.log(data)
   if(data.typing==true)

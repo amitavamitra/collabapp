@@ -62,11 +62,9 @@ function userTyping(data) {
 //  When user is working on  Matkx
 matkx.addEventListener('keypress',function(){
   socket.emit('matkx',utyping)
-  clearTimeout(timeout)
-  timeout=setTimeout(1500)
 })
 socket.on('matkx',function(data){
-matkx_user.innerHTML = data.value + ' is typing';
+matkx_user.innerHTML = data.value + ' is typing...';
 matkx_user.style.backgroundColor = 'lightblue';
 })
 

@@ -40,12 +40,6 @@ socket.on('message', (message) => {
   outputMessage(message);
 });
 
-if ( docActiveElement == 'matkx') {
-  document.getElementById('matkx_user').style.backgroundColor = 'red';
-  }
-
-
-
 // Message from server
 socket.on('typing', (data) => {
   // console.log(data);
@@ -67,14 +61,13 @@ function userTyping(data) {
 
 //  When user is working on  Matkx
 matkx.addEventListener('keypress',function(){
-    socket.emit('matkx',utyping)
-    clearTimeout(timeout)
-    timeout=setTimeout(1500)
-  })
+  socket.emit('matkx',utyping)
+  clearTimeout(timeout)
+  timeout=setTimeout(1500)
+})
 socket.on('matkx',function(data){
 matkx_user.innerHTML = data.value + ' is typing';
 matkx_user.style.backgroundColor = 'lightblue';
-
 })
 
 //  When user is working on  mbrsh
@@ -113,7 +106,6 @@ matyp_user.style.backgroundColor = 'lightblue';
 
 })
 
-
 //  When user is working on  meins
 meins.addEventListener('mousedown',function(){
   socket.emit('meins',utyping)
@@ -128,19 +120,22 @@ meins_user.style.backgroundColor = 'lightblue';
 
 //  When user is working on  freeze
 freeze.addEventListener('mousedown',function(){
-  socket.emit('freeze',{utyping: utyping,freeze:freeze.value})
+  socket.emit('freeze',{utyping: utyping,freeze:freeze.checked})
   clearTimeout(timeout)
   timeout=setTimeout(1500)
 })
 socket.on('freeze',function(data){
-  // console.log(data.freeze)
-  if (data.freeze == 'on') {
-    freeze_user.innerHTML = data.utyping.value + ' has agreed';
+  console.log(data.freeze)
+   if (data.freeze == true) {
+    freeze_user.innerHTML = data.utyping.value + ' is working...';
     freeze_user.style.backgroundColor = 'lightblue';
+   
   } 
+  if (data.freeze == false){
+    freeze_user.innerHTML = data.utyping.value + ' has agreed';
+    freeze_user.style.backgroundColor = 'lightgreen';
+  }
 })
-
-
 
 chatForm.addEventListener('keydown', (e) => {
   if (e.isComposing) {
@@ -205,19 +200,14 @@ function outputMessage(message) {
         document.getElementById('matkl').value = message.text[2];
         document.getElementById('matyp').value = message.text[3];
         document.getElementById('meins').value = message.text[4];
-        
         } 
-
-      
-
-
 }
 // Add room name to DOM
 function outputRoomName(room) {
   roomName.innerText = room;
 }
 
-// Add users to DOM
+// Add users in room to DOM
 function outputUsers(users) {
       userList.innerHTML = '';
       users.forEach((user) => {

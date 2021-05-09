@@ -40,14 +40,13 @@ io.on('connection', socket => {
 //  user typing /?
 
   // When typing on matkx
-
-  socket.on('matkx',function(data){
+socket.on('matkx',function(data){
     socket.broadcast.emit('matkx',data);
-  })
+    console.log(data);
+})
 
    // When typing on mbrsh
-
-   socket.on('mbrsh',function(data){
+  socket.on('mbrsh',function(data){
     socket.broadcast.emit('mbrsh',data);
   })
 
@@ -64,17 +63,14 @@ io.on('connection', socket => {
       })
 
       // When typing on meins
-
        socket.on('meins',function(data){
         socket.broadcast.emit('meins',data);
       })
 
       // When typing on freeze
-
       socket.on('freeze',function(data){
         socket.broadcast.emit('freeze',data);
       })
-
 
 socket.on('typing', (data)=>{
   console.log(data)
@@ -86,7 +82,7 @@ socket.on('typing', (data)=>{
 })
 
     // Welcome current user
-    socket.emit('message', formatMessage(botName, ''));
+    socket.emit('welcome', formatMessage(botName, ''));
 
 // Who is typing ?
 
@@ -94,7 +90,7 @@ socket.on('typing', (data)=>{
     socket.broadcast
       .to(user.room)
       .emit(
-        'message',
+        'welcome',
         formatMessage(botName, '')
       );
 
@@ -121,7 +117,7 @@ socket.on('typing', (data)=>{
 
     if (user) {
       io.to(user.room).emit(
-        'message',
+        'leaves',
         formatMessage(botName, `${user.username} has left the chat`)
       );
 

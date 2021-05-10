@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const https = require('https');
 const request = require('request');
-// const rfcClient = require("node-rfc").Client; 
+// const rfcClient = require("node-rfc").Client; removed for Heroku
 require('dotenv').config();
 const socketio = require('socket.io');
 const formatMessage = require('./utils/messages');
